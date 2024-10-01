@@ -28,10 +28,10 @@ external fun drawEllipse(x: Int, y: Int, width: Int,height: Int, fillColor: Int,
 external fun drawTriangle(x1: Int, y1: Int, x2: Int, y2: Int, x3: Int, y3: Int, fillColor: Int, strokeColor: Int, strokeWidth: Int)
 
 @WasmImport("graphics", "draw_arc")
-external fun drawArc(x: Int, y: Int, d: Int, ast: Float, asc: Float, fillColor: Int, strokeColor: Int, strokeWidth: Int)
+external fun drawArc(x: Int, y: Int, diameter: Int, angleStart: Float, angleSweep: Float, fillColor: Int, strokeColor: Int, strokeWidth: Int)
 
 @WasmImport("graphics", "draw_sector")
-external fun drawSector(x: Int, y: Int, d: Int, ast: Int, asc: Int, fillColor: Int, strokeColor: Int, strokeWidth: Int)
+external fun drawSector(x: Int, y: Int, diameter: Int, angleStart: Float, angleSweep: Float, fillColor: Int, strokeColor: Int, strokeWidth: Int)
 
 //@WasmImport("graphics","draw_text")
 //external fun drawText(

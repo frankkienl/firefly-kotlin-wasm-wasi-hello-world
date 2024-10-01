@@ -80,3 +80,14 @@ data class Arc(var point: Point, var diameter: Int, val start: Angle, var sweep:
         )
     }
 }
+
+data class Sector(var point: Point, var diameter: Int, var start: Angle, var sweep: Angle, var style: Style) : Shape {
+    override fun draw() {
+        drawSector(
+            point.x, point.y,
+            diameter,
+            start.a, sweep.a,
+            style.fillColor.id, style.strokeColor.id, style.strokeWidth
+        )
+    }
+}

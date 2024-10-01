@@ -11,7 +11,7 @@ data class Line(val a: Point, var b: Point, var style: Style) : Shape {
         drawLine(
             a.x, a.y,
             b.x, b.y,
-            style.strokeColor.id,
+            style.strokeColor,
             style.strokeWidth
         )
     }
@@ -22,7 +22,7 @@ data class Rect(var point: Point, var size: Size, var style: Style) : Shape {
         drawRect(
             point.x, point.y,
             size.width, size.height,
-            style.fillColor.id, style.strokeColor.id, style.strokeWidth
+            style.fillColor, style.strokeColor, style.strokeWidth
         )
     }
 }
@@ -33,7 +33,7 @@ data class RoundedRect(var point: Point, var size: Size, var corner: Size, var s
             point.x, point.y,
             size.width, size.height,
             corner.width, corner.height,
-            style.fillColor.id, style.strokeColor.id, style.strokeWidth
+            style.fillColor, style.strokeColor, style.strokeWidth
         )
     }
 }
@@ -43,7 +43,7 @@ data class Circle(var point: Point, var diameter: Int, var style: Style) : Shape
         drawCircle(
             point.x, point.y,
             diameter,
-            style.fillColor.id, style.strokeColor.id, style.strokeWidth
+            style.fillColor, style.strokeColor, style.strokeWidth
         )
     }
 }
@@ -53,7 +53,7 @@ data class Ellipse(var point: Point, var size: Size, var style: Style) : Shape {
         drawEllipse(
             point.x, point.y,
             size.width, size.height,
-            style.fillColor.id, style.strokeColor.id, style.strokeWidth
+            style.fillColor, style.strokeColor, style.strokeWidth
         )
     }
 }
@@ -64,7 +64,7 @@ data class Triangle(var a: Point, var b: Point, var c: Point, var style: Style) 
             a.x, a.y,
             b.x, b.y,
             c.x, c.y,
-            style.fillColor.id, style.strokeColor.id, style.strokeWidth
+            style.fillColor, style.strokeColor, style.strokeWidth
         )
     }
 }
@@ -74,9 +74,8 @@ data class Arc(var point: Point, var diameter: Int, val start: Angle, var sweep:
         drawArc(
             point.x, point.y,
             diameter,
-            start.a,
-            sweep.a,
-            style.fillColor.id, style.strokeColor.id, style.strokeWidth
+            start.a, sweep.a,
+            style.fillColor, style.strokeColor, style.strokeWidth
         )
     }
 }
@@ -87,7 +86,7 @@ data class Sector(var point: Point, var diameter: Int, var start: Angle, var swe
             point.x, point.y,
             diameter,
             start.a, sweep.a,
-            style.fillColor.id, style.strokeColor.id, style.strokeWidth
+            style.fillColor, style.strokeColor, style.strokeWidth
         )
     }
 }

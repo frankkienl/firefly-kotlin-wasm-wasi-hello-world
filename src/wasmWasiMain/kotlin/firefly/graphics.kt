@@ -1,13 +1,59 @@
 package firefly
 
+//Screen width in pixels
 const val width = 240
+
+//Screen height in pixels
 const val height = 160
 
-data class Point(var x: Int, var y: Int) {}
+/**
+ * A point on the screen.
+ * Typically, the upper-left corner of a bounding box of a shape.
+ */
+data class Point(var x: Int, var y: Int) {
+    fun toSize() : Size {
+        return Size(width = x, height = y)
+    }
+}
 
-data class Size(var width: Int, var height: Int) {}
+operator fun Point.plus(r: Size) = Point(x + r.width, y + r.height)
+operator fun Point.minus(r: Size) = Point(x - r.width, y - r.height)
 
-data class Angle(var a: Float) {}
+operator fun Point.plus(r: Point) = Point(x + r.x, y + r.y)
+operator fun Point.minus(r: Point) = Point(x - r.x, y - r.y)
+
+data class Size(var width: Int, var height: Int) {
+    fun toPoint() : Point {
+        return Point(x = width, y = height)
+    }
+}
+
+data class Angle(var a: Float) {
+
+    // Get the angle value in radians
+    fun toRadians() : Float {
+        return a
+    }
+
+    // Get the angle value in degrees
+    fun toDegrees() : Float {
+        return (a * kotlin.math.PI / 180).toFloat()
+    }
+}
+
+/**
+ * Define an angle in radians where Tau (doubled Pi) is the full circle
+ */
+fun radiansToAngle(angle: Float) : Angle {
+    return Angle(angle)
+}
+
+/**
+ * Define an angle in radians where 360.0 is the full circle
+ */
+fun degreesToAngle(angle: Float) : Angle {
+    return Angle((angle * kotlin.math.PI / 180).toFloat()) //PI is a Double; Explicit cast to Float
+}
 
 data class RGB(var r: Int, var g: Int, var b: Int) {}
 
@@ -31,9 +77,8 @@ enum class DefaultColorsEnum(id: Int, hex: Int) {
     COLOR_DARK_GRAY(16, 0x333C57),
 }
 
-data class Color(var id: Int) {
-
-}
+//data class Color(var id: Int) { }
+typealias Color = Int
 
 data class Style(
     var fillColor: Color,
@@ -41,11 +86,7 @@ data class Style(
     var strokeWidth: Int
 )
 
-data class LineStyle(val color: Color, var width: Int){}
-
-fun clearScreen(color: Color) {
-    clearScreen(color.id)
-}
+data class LineStyle(val color: Color, var width: Int) {}
 
 data class Arc(
     var point: Point,
@@ -54,12 +95,3 @@ data class Arc(
     var sweep: Angle,
     var style: Style
 )
-
-fun convertPointToSize(point: Point) = Size(point.x, point.y)
-fun convertSizeToPoint(size: Size) = Point(size.width, size.height)
-
-operator fun Point.plus(r: Size) = Point(x + r.width, y + r.height)
-operator fun Point.minus(r: Size) = Point(x - r.width, y - r.height)
-
-operator fun Point.plus(r: Point) = Point(x + r.x, y + r.y)
-operator fun Point.minus(r: Point) = Point(x - r.x, y - r.y)

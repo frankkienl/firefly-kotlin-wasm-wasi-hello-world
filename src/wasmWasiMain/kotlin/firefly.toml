@@ -1,4 +1,7 @@
-author_id = "FrankkieNL"
+author_id = "frankkienl"
 app_id = "hello-world"
 author_name = "Frank Bouwens"
 app_name = "Hello World"
+
+[files]
+_bin = { path = "firefly-kotlin-wasm-wasi-hello-world-wasm-wasi.wasm", copy = true }

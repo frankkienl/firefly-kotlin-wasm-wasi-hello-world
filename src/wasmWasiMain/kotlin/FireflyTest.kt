@@ -1,3 +1,9 @@
+import firefly.DefaultColorsEnum
+import firefly.Point
+import firefly.Style
+import firefly.drawTriangle
+import shapes.Triangle
+
 @WasmExport
 fun main() {
     println("Main()")
@@ -18,6 +24,18 @@ fun update() {
 @WasmExport
 fun render() {
     println("Render")
+
+    val myTriangle = Triangle(
+        Point(60,10),
+        Point(40,40),
+        Point(80,60),
+        Style(
+            DefaultColorsEnum.COLOR_GREEN.ordinal,
+            DefaultColorsEnum.COLOR_BLUE.ordinal,
+            1
+        )
+    )
+    myTriangle.draw()
 }
 
 @WasmExport

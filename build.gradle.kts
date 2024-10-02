@@ -1,5 +1,6 @@
 import org.gradle.internal.os.OperatingSystem
 import de.undercouch.gradle.tasks.download.Download
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsExec
 import org.jetbrains.kotlin.gradle.targets.js.testing.KotlinJsTest
 import org.jetbrains.kotlin.gradle.testing.internal.KotlinTestReport
@@ -15,6 +16,7 @@ repositories {
 }
 
 kotlin {
+    @OptIn(ExperimentalWasmDsl::class)
     wasmWasi {
         nodejs()
         binaries.executable()
